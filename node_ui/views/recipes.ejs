@@ -1,0 +1,27 @@
+<html lang="en">
+  <head>
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="css/index.css" type="text/css"/>
+  </head>
+  <body>
+    <% for(var i = 0; i < recipes.length; ++i) { %>
+       <% if (i % 2 == 0) { %>
+       <div class="recipe-class-orange">
+	 <li><%- recipes[i].name %></li>
+	 <p><%- recipes[i].description %></p>
+	 <% for(var j = 0; j < recipes[i].tags.length; ++j) { %>
+	    <a href=""><%- recipes[i].tags[j] %></a>
+	    <% } %>
+       </div>
+       <% } else { %>
+       <div class="recipe-class-blue">
+	 <li><%- recipes[i].name %></li>
+	 <p><%- recipes[i].description %></p>
+	 <% for(var j = 0; j < recipes[i].tags.length; ++j) { %>
+	    <a href=""><%- recipes[i].tags[j] %></a>
+	    <% } %>
+       </div>
+       <% } %>
+       <% } %>
+  </body>
+</html>

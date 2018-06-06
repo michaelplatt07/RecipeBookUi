@@ -1,0 +1,25 @@
+<html lang="en">
+  <head>
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="css/index.css" type="text/css"/>
+  </head>
+  <body>
+    <%- recipe.name %>
+    <p><%- recipe.description %></p>
+    <p>Ingredients</p>
+    <ul>
+      <% for(var i = 0; i < recipe.ingredients.length; ++i) { %>
+	 <li><%- recipe.ingredients[i] %></li>
+	 <% } %>
+    </ul>
+    <p>Steps</p>
+    <ul>
+      <% for(var i = 0; i < recipe.steps.length; ++i) { %>
+	 <li><%- recipe.steps[i] %></li>
+	 <% } %>
+    </ul>
+    <% for(var i = 0; i < recipe.tags.length; ++i) { %>
+       <a href=""><%- recipe.tags[i] %></a>
+       <% } %>
+  </body>
+</html>

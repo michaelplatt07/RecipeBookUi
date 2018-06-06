@@ -1,0 +1,26 @@
+li
+{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.recipe-class-orange
+{
+    background-color: #E59400;
+    float: left;
+    display: inline;
+    height: 100%;
+    max-width: 350px;
+    padding: 10px;
+}
+
+.recipe-class-blue
+{
+    background-color: #7777E5;
+    float: left;
+    display: inline;
+    height: 100%;
+    max-width: 350px;
+    padding: 10px;
+}
+
