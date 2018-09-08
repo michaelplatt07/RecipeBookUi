@@ -1,27 +1,19 @@
 <html lang="en">
   <head>
-    <title><%= pageTitle %></title>
-    <link rel="stylesheet" href="css/index.css" type="text/css"/>
+    <title>Recipes</title>
+    <link rel="stylesheet" href="/css/recipes.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/common.css" type="text/css"/>
   </head>
   <body>
+    <%- include('components/header') %>
     <% for(var i = 0; i < recipes.length; ++i) { %>
-       <% if (i % 2 == 0) { %>
-       <div class="recipe-class-orange">
-	 <li><%- recipes[i].name %></li>
-	 <p><%- recipes[i].description %></p>
-	 <% for(var j = 0; j < recipes[i].tags.length; ++j) { %>
-	    <a href=""><%- recipes[i].tags[j] %></a>
-	    <% } %>
-       </div>
-       <% } else { %>
-       <div class="recipe-class-blue">
-	 <li><%- recipes[i].name %></li>
-	 <p><%- recipes[i].description %></p>
-	 <% for(var j = 0; j < recipes[i].tags.length; ++j) { %>
-	    <a href=""><%- recipes[i].tags[j] %></a>
-	    <% } %>
-       </div>
-       <% } %>
+       <a href="/recipes/id/<%- recipes[i]._id %>">
+	 <div class="recipe-box">
+	   <p class="recipe-title"><%- recipes[i].text_friendly_name %></p>
+	   <p class="recipe-description"><%- recipes[i].description %></p>
+	   <p class="recipe-short-description"><%- recipes[i].short_description %></p>
+	 </div>
+       </a>
        <% } %>
   </body>
 </html>

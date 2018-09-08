@@ -1,25 +1,30 @@
 <html lang="en">
   <head>
-    <title><%= pageTitle %></title>
-    <link rel="stylesheet" href="css/index.css" type="text/css"/>
+    <title>Recipe</title>
+    <link rel="stylesheet" href="/css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/singleRecipe.css" type="text/css"/>
   </head>
   <body>
-    <%- recipe.name %>
-    <p><%- recipe.description %></p>
-    <p>Ingredients</p>
-    <ul>
-      <% for(var i = 0; i < recipe.ingredients.length; ++i) { %>
-	 <li><%- recipe.ingredients[i] %></li>
-	 <% } %>
-    </ul>
-    <p>Steps</p>
-    <ul>
-      <% for(var i = 0; i < recipe.steps.length; ++i) { %>
-	 <li><%- recipe.steps[i] %></li>
-	 <% } %>
-    </ul>
-    <% for(var i = 0; i < recipe.tags.length; ++i) { %>
-       <a href=""><%- recipe.tags[i] %></a>
-       <% } %>
+    <%- include('components/header') %>
+    <div class="single-recipe-box">
+      <p class="recipe-title"><%- recipe.text_friendly_name %></p>
+      <p><%- recipe.description %></p>
+      <div class="ingredient-list">
+	<p>Ingredients</p>
+      <ul>
+	<% for(var i = 0; i < recipe.ingredients.length; ++i) { %>
+	   <li><%- recipe.ingredients[i].quantity %> <%- recipe.ingredients[i].measurement %> <%- recipe.ingredients[i].text_friendly_name %></li>
+	   <% } %>
+      </ul>
+      </div>
+      <div class="step-list">
+      <p>Steps</p>
+      <ul>
+	<% for(var i = 0; i < recipe.steps.length; ++i) { %>
+	   <li><%- recipe.steps[i] %></li>
+	   <% } %>
+      </ul>
+      </div>
+    </div>
   </body>
 </html>
