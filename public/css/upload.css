@@ -1,0 +1,27 @@
+@media (max-device-width: 479px) {
+    .upload-div
+{
+    text-align: center;
+}
+
+    .upload-button
+    {
+	font-size: 0.5em;
+    }
+}
+
+@media (min-device-width: 480px) {
+    .upload-div
+    {
+	padding-top: 20px;
+	text-align: center;
+	display: inline;
+	float: left;
+	width: 34%;
+    }
+
+    .upload-button
+    {
+	font-size: 1em;
+    }
+}

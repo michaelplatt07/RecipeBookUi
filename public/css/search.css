@@ -1,0 +1,27 @@
+@media (max-device-width: 479px) {
+    .search-div
+{
+    text-align: center;
+}
+
+    .search-button
+    {
+	font-size: 0.5em;
+    }
+}
+
+@media (min-device-width: 480px) {
+    .search-div
+    {
+	padding-top: 20px;
+	text-align: center;
+	display: inline;
+	float: left;
+	width: 34%;
+    }
+
+    .search-button
+    {
+	font-size: 1em;
+    }
+}

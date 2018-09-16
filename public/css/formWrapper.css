@@ -1,0 +1,31 @@
+@media (max-device-width: 479px) {
+    .border-left
+    {
+	display: none;
+    }
+
+    .border-right
+    {
+	display: none;
+    }
+}
+
+@media (min-device-width: 480px) {
+    .border-left
+    {
+	display: inline;
+	float: left;
+	width: 33%;
+	height: 100%;
+	background-color: #4444AA;
+    }
+
+    .border-right
+    {
+	display: inline;
+	float: right;
+	width: 33%;
+	height: 100%;
+	background-color: #4444AA;
+    }
+}

@@ -13,19 +13,12 @@
 	height: 100%;
     }
 
-    .home-icon
+    .home-container p
     {
-	height: 100%;
-    }
-
-    .options-container
-    {
-	display: inline;
-	float: right;
-	height: 100%;
+	display: none;
     }
     
-    .options-icon
+    .home-icon
     {
 	height: 100%;
     }
@@ -35,6 +28,11 @@
 	display: inline;
 	float: right;
 	height: 100%;
+    }
+
+    .search-container p
+    {
+	display: none;
     }
     
     .search-icon
@@ -48,14 +46,103 @@
 	float: right;
 	height: 100%;
     }
+
+    .filter-container p
+    {
+	display: none;
+    }
     
     .filter-icon
     {
 	height: 100%;
     }
 
+    .add-container
+    {
+	display: inline;
+	float: right;
+	height: 100%;
+    }
+
+    .add-container p
+    {
+	display: none;
+    }
+    
+    .add-icon
+    {
+	height: 100%;
+    }
 }
 
 @media (min-device-width: 480px) {
-    
+    .header-container
+    {
+	width: 100%;
+	height: 150px;
+	background-color: #AA6666;
+    }
+
+    .home-container
+    {
+	display: inline;
+	float: left;
+	height: 100%;
+	margin-left: 20px;
+    }
+
+    .home-container p
+    {
+	font-size: 2em;
+	height: 100%;
+	margin: 0px;
+	padding-top: 50px;
+    }
+
+    .home-icon
+    {
+	display: none;
+    }
+
+    .search-container
+    {
+	display: inline;
+	float: right;
+	height: 100%;
+	margin-right: 20px;
+    }
+
+    .search-container p
+    {
+	font-size: 2em;
+	height: 100%;
+	margin: 0px;
+	padding-top: 50px;
+    }
+
+    .search-icon
+    {
+	display: none;
+    }
+
+    .filter-container
+    {
+	display: inline;
+	float: right;
+	height: 100%;
+	margin-right: 20px;
+    }
+
+    .filter-container p
+    {
+	font-size: 2em;
+	height: 100%;
+	margin: 0px;
+	padding-top: 50px;
+    }
+
+    .filter-icon
+    {
+	display: none;
+    }
 }

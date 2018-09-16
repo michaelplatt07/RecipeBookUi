@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="/css/formWrapper.css" type="text/css"/>
+<div class="border-left">
+</div>
+<%if (typeof search !== "undefined" && search) { %>
+<%- include('search') %>
+<% } else if (upload !== "undefined" && upload) { %>
+<%- include('upload') %>
+<% } else { %>
+<% } %>
+<div class="border-right">
+</div>
