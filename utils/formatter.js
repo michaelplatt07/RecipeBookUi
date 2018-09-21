@@ -5,14 +5,25 @@ exports.formatTime = (unformattedTime) => {
     return formattedTime
 }
 
-exports.formatIngredients = (ingredientList) => {
+exports.formatIngredients = (ingredientList, quantityList, unitList) => {
     let ingredients = []
-    ingredientList.split(",").forEach((ingredient) => {
+
+    if (ingredientList.constructor === Array && ingredientList.length > 1) {
+	ingredientList.forEach((ingredient, index) => {
+	    let ingredientJSON = {}
+	    ingredientJSON.quantity = quantityList[index]
+	    ingredientJSON.measurement = unitList[index]
+	    ingredientJSON.text_friendly_name = ingredientList[index]
+	    ingredients.push(ingredientJSON)
+	})
+    }
+    else {
 	let ingredientJSON = {}
-	ingredientJSON.quantity = ingredient.split(" ")[0]
-	ingredientJSON.measurement = ingredient.split(" ")[1]
-	ingredientJSON.text_friendly_name = ingredient.split(" ")[2]
+	ingredientJSON.quantity = quantityList
+	ingredientJSON.measurement = unitList
+	ingredientJSON.text_friendly_name = ingredientList
 	ingredients.push(ingredientJSON)
-    })
-    return ingredients
+    }
+    
+    return ingredients    
 }

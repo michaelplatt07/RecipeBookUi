@@ -1,16 +1,33 @@
 <link rel="stylesheet" href="/css/upload.css" type="text/css"/>
+<script src="/js/upload.js"></script>
 <div class="upload-div">
   <form id="uploadForm" action="/recipes/add" method="POST">
     <p>
       Please include the following information about the recipe:
     </p>
     <label for="name">Name: </label><input type="text" name="name" /><br>
-    <label for="ingredients">Ingredients: </label><input type="text" name="ingredients" /><br>
-    <label for="steps">Steps: </label><input type="text" name="steps" /><br>
-    <label for="course">Course: </label><input type="text" name="course" /><br>
+    <div id="ingredientDiv" >
+      <label for="ingredients">Ingredients: </label><input type="text" name="quantity" /><input type="text" name="unit" /><input type="text" name="ingredient" /><button type="button" onclick="addNewIngredient()">+</button><br>
+    </div>
+    <div id="stepDiv">
+      <label for="steps">Steps: </label><input type="text" name="steps" /><button type="button" onclick="addNewStep()">+</button><br>
+    </div>
+    <label for="course">Course: </label>
+    <select name="course" multiple>
+      <% courses.forEach(function(course){ %>
+      <option value="<%= course %>"><%= course %></option>
+      <% }); %>
+    </select>
+    <br>
     <label for="prepTime">Prep Time: </label><input type="text" name="prepTime" /><br>
     <label for="cookTime">Cook Time: </label><input type="text" name="cookTime" /><br>
-    <label for="cuisine">Cuisine: </label><input type="text" name="cuisine" /><br>
+    <label for="cuisine">Cuisine: </label>
+    <select name="cuisine" multiple>
+      <% cuisines.forEach(function(cuisine){ %>
+      <option value="<%= cuisine %>"><%= cuisine %></option>
+      <% }); %>
+    </select>
+    <br>
     <label for="description">Description: </label><input type="text" name="description" /><br>
     <label for="searchable">Status: </label><br>
     <input type="radio" name="searchable" value="true"> Public<br>

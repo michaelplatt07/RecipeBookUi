@@ -25,6 +25,8 @@
       "ejs": "^2.5.9",
       "express": "^4.16.3",
       "hoek": "^5.0.3",
+      "jquery": "^3.3.1",
+      "jquery-serializejson": "^2.8.1",
       "mocha": "^5.1.1",
       "mongodb": "^2.2.35",
       "react": "^16.5.0",

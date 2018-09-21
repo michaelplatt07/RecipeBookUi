@@ -6,6 +6,8 @@ const rp = require('request-promise');
 const bodyParser = require('body-parser');
 const util = require('util')
 const formatter = require('./utils/formatter')
+const cuisines = require('./consts/cuisines.js')
+const courses = require('./consts/courses.js')
 
 // View configuration information.
 app.use(express.static(__dirname + '/public'));
@@ -94,14 +96,18 @@ app.post('/recipes/search', (req, res) => {
     // Run get and wait on promise before rendering.
     rp(options, (req, res) => {
     }).then((response) => {
-	res.render('Succesfully added your new recipe.')
+	res.render('recipes', { recipes: response['recipes'] })
+    }).catch((err) => {
+	if (err.statusCode == 404) {
+	    res.render('error', { message: err.error.msg })
+	}
     });
 });
 
 
 // Upload a new recipe.
 app.get('/recipes/add', (req, res) => {
-    res.render('recipeUpload')
+    res.render('recipeUpload', { cuisines: cuisines, courses: courses })
 })
 
 
@@ -109,15 +115,16 @@ app.get('/recipes/add', (req, res) => {
 app.post('/recipes/add', (req, res) => {
     const recipe = {}
     recipe.text_friendly_name = req.body.name
-    recipe.ingredients = formatter.formatIngredients(req.body.ingredients)
-    recipe.steps = req.body.steps.split(",")
-    recipe.course = req.body.course.split(",")
+    recipe.ingredients = formatter.formatIngredients(req.body.ingredient, req.body.quantity, req.body.unit)
+    recipe.steps = req.body.steps
+    console.log(req.body.course)
+    recipe.course = req.body.course
     recipe.prep_time = formatter.formatTime(req.body.prepTime)
     recipe.cook_time = formatter.formatTime(req.body.cookTime)
-    recipe.cuisine = req.body.cuisine.split(",")
+    recipe.cuisine = req.body.cuisine
     recipe.searchable = (req.body.searchable === "true")
     recipe.description = req.body.description
-    
+
     var options = {
 	method: 'POST',
 	uri: 'http://localhost:3000/recipes/add',
@@ -132,6 +139,7 @@ app.post('/recipes/add', (req, res) => {
     }).catch((err) => {
 	if (err.statusCode === 422)
 	{
+	    console.log(err.error.msg)
 	    res.render('error', { message: err.error.msg })
 	}
 	else
