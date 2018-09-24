@@ -8,6 +8,7 @@ const util = require('util')
 const formatter = require('./utils/formatter')
 const cuisines = require('./consts/cuisines.js')
 const courses = require('./consts/courses.js')
+const measurements = require('./consts/measurements.js')
 
 // View configuration information.
 app.use(express.static(__dirname + '/public'));
@@ -21,6 +22,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // Home page.
 app.get('/', async (req, res) => {
     res.render('index')
+});
+
+
+app.get('/success', async (req, res) => {
+    res.render('success')
 });
 
 
@@ -107,7 +113,7 @@ app.post('/recipes/search', (req, res) => {
 
 // Upload a new recipe.
 app.get('/recipes/add', (req, res) => {
-    res.render('recipeUpload', { cuisines: cuisines, courses: courses })
+    res.render('recipeUpload', { cuisines: cuisines, courses: courses, measurements: measurements })
 })
 
 
@@ -117,7 +123,6 @@ app.post('/recipes/add', (req, res) => {
     recipe.text_friendly_name = req.body.name
     recipe.ingredients = formatter.formatIngredients(req.body.ingredient, req.body.quantity, req.body.unit)
     recipe.steps = req.body.steps
-    console.log(req.body.course)
     recipe.course = req.body.course
     recipe.prep_time = formatter.formatTime(req.body.prepTime)
     recipe.cook_time = formatter.formatTime(req.body.cookTime)
@@ -135,7 +140,7 @@ app.post('/recipes/add', (req, res) => {
     // Run get and wait on promise before rendering.
     rp(options, (req, res) => {
     }).then((response) => {
-	res.render('index')
+	res.redirect('/success')
     }).catch((err) => {
 	if (err.statusCode === 422)
 	{

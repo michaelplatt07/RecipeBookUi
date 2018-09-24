@@ -1,9 +1,14 @@
 @media (max-device-width: 479px) {
     .search-div
-{
-    text-align: center;
-}
+    {
+	text-align: center;
+    }
 
+    .hint
+    {
+	font-size: 0.75em;
+    }
+    
     .search-button
     {
 	font-size: 0.5em;
