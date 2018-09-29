@@ -49,8 +49,9 @@ app.get('/recipes', async (req, res) => {
     }
 
     try
-    {    let response = await rp(options);
-	 res.render('recipes', { recipes: response['recipes'] })
+    {
+	let response = await rp(options);
+	res.render('recipes', { recipes: response['recipes'] })
     }
     catch (err)
     {
@@ -161,6 +162,78 @@ app.post('/recipes/add', (req, res) => {
     });
 })
 
+
+// Filter recipes.
+app.get('/recipes/filter', async (req, res) => {
+    var options = {
+	method: 'GET',
+	uri: 'http://localhost:3000/ingredients',
+	json: true
+    }
+
+    try
+    {
+	let response = await rp(options);
+	res.render('recipeFilter', { cuisines: cuisines, courses: courses, ingredients: response.ingredients })
+    }
+    catch (err)
+    {
+	if (err.statusCode === 404)
+	{
+	    console.log(err.error.msg)
+	    res.render('error', { message: err.error.msg })
+	}
+    }
+    
+})
+
+
+// Post for filtering recipes
+app.post('/recipes/filter', async (req, res) => {
+    var queryString = '?'
+    
+    if (req.body.ingredients)
+    {
+	if (Array.isArray(req.body.ingredients))
+	    queryString += `ingredients=${req.body.ingredients.join('+')}`
+	else
+	    queryString += `ingredients=${req.body.ingredients}`
+    }
+    if (req.body.cuisine)
+    {
+	if (Array.isArray(req.body.cuisine))
+	    queryString += (queryString.length > 1) ? `&cuisine=${req.body.cuisine.join('+')}` : `cuisine=${req.body.cuisine.join('+')}`
+	else
+	    queryString += (queryString.length > 1) ? `&cuisine=${req.body.cuisine}` : `cuisine=${req.body.cuisine}`
+    }
+    if (req.body.course)
+    {
+	if (Array.isArray(req.body.course))
+	    queryString += (queryString.length > 1) ? `&course=${req.body.course.join('+')}` : `course=${req.body.course.join('+')}`
+	else
+	    queryString += (queryString.length > 1) ? `&course=${req.body.course}` : `cuisine=${req.body.course}`
+    }
+    
+    var options = {
+	method: 'GET',
+	uri: 'http://localhost:3000/recipes/search' + queryString,
+	json: true
+    }
+
+
+    try
+    {
+	let response = await rp(options)
+	res.render('recipes', { recipes: response['recipes'] })
+    }
+    catch (err)
+    {
+	if (err.statusCode == 404) {
+	    res.render('error', { message: err.error.msg })
+	}
+
+    }
+})
 
 // Recipe by name.
 app.get('/recipes/:recipeName', (req, res) => {

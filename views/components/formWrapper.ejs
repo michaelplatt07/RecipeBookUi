@@ -3,8 +3,10 @@
 </div>
 <%if (typeof search !== "undefined" && search) { %>
 <%- include('search') %>
-<% } else if (upload !== "undefined" && upload) { %>
+<% } else if (typeof upload !== "undefined" && upload) { %>
 <%- include('upload') %>
+<% } else if (typeof filter !== "undefined" && filter) { %>
+<%- include('filter') %>
 <% } else { %>
 <% } %>
 <div class="border-right">
