@@ -1,0 +1,13 @@
+@media (max-device-width: 479px) {
+}
+
+@media (min-device-width: 480px) {
+    .success-div
+    {
+	display: inline;
+	float: left;
+	width: calc(34% - 20px);
+	text-align: left;
+	padding: 10px;
+    }
+}

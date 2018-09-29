@@ -23,11 +23,11 @@
 @media (min-device-width: 480px) {
     .search-div
     {
-	padding-top: 20px;
-	text-align: center;
 	display: inline;
 	float: left;
-	width: 34%;
+	width: calc(34% - 20px);
+	text-align: center;
+	padding: 10px;
     }
 
     .search-button

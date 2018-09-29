@@ -26,7 +26,7 @@ app.get('/', async (req, res) => {
 
 
 app.get('/success', async (req, res) => {
-    res.render('success')
+    res.render('recipeSuccess')
 });
 
 

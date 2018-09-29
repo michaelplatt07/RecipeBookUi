@@ -98,16 +98,79 @@
 @media (min-device-width: 480px) {
     .upload-div
     {
-	padding-top: 20px;
-	text-align: center;
 	display: inline;
 	float: left;
-	width: 34%;
+	width: calc(34% - 20px);
+	text-align: left;
+	padding: 10px;
     }
 
-    .upload-button
+    .name-input
     {
-	font-size: 1em;
+	width: 100%;
+	margin-bottom: 5px;
+    }
+
+    .add-new-item-button
+    {
+	margin-bottom: 5px;
+    }
+    
+    .quantity-input
+    {
+	width: 10%;
+	margin-right: 2px;
+	margin-bottom: 5px;
+    }
+
+    .measurement-input
+    {
+	width: 15%;
+	margin-right: 2px;
+	margin-bottom: 5px;
+    }
+
+    .ingredient-input
+    {
+	width: 70%;
+	margin-bottom: 5px;
+    }
+
+    .step-input
+    {
+	width: 100%;
+	margin-bottom: 5px;
+    }
+
+    .course-select
+    {
+	width: 100%;
+	margin-bottom: 5px;
+    }
+
+    .prep-input
+    {
+	width: 70%;
+    	margin-bottom: 5px;
+    }
+
+    .cook-input
+    {
+	width: 70%;
+    	margin-bottom: 5px;
+    }
+
+    .cuisine-select
+    {
+	width: 100%;
+	margin-bottom: 5px;
+    }
+
+    .description-input
+    {
+	width: 100%;
+	height: 150px;
+    	margin-bottom: 5px;
     }
 }
 

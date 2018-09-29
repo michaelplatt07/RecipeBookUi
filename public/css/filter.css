@@ -40,4 +40,30 @@
 }
 
 @media (min-device-width: 480px) {
+    .filter-div
+    {
+	text-align: left;
+	padding: 10px;
+	width: calc(34% - 20px);
+	display: inline;
+	float: left;
+    }
+
+    .cuisine-filter
+    {
+	width: 100%;
+	margin-bottom: 5px;
+    }
+
+    .course-filter
+    {
+	width: 100%;
+	margin-bottom: 5px;
+    }
+
+    .ingredient-filter
+    {
+	width: 100%;
+	margin-bottom: 5px;
+    }
 }

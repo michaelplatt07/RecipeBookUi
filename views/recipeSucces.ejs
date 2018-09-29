@@ -1,7 +1,7 @@
 <script>
   setTimeout(function () {
-     // after 2 seconds
-     window.location = "/";
+  // after 2 seconds
+  window.location = "/";
   }, 3000)
 </script>
 <html lang="en">
@@ -11,6 +11,6 @@
   </head>
   <body>
     <%- include('components/header') %>
-    <p>You have successfully added a recipe.  If the page does not redirect within a few seconds please click below to havigate back to the home page.</p>
+    <%- include('components/formWrapper', {success: true}) %>
   </body>
 </html>

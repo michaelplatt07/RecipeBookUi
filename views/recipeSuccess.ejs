@@ -1,0 +1,16 @@
+<script>
+  setTimeout(function () {
+  // after 2 seconds
+  window.location = "/";
+  }, 3000)
+</script>
+<html lang="en">
+  <head>
+    <title>Success</title>
+    <link rel="stylesheet" href="/css/common.css" type="text/css"/>
+  </head>
+  <body>
+    <%- include('components/header') %>
+    <%- include('components/formWrapper', {success: true}) %>
+  </body>
+</html>

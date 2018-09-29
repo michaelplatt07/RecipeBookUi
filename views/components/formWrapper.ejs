@@ -7,6 +7,8 @@
 <%- include('upload') %>
 <% } else if (typeof filter !== "undefined" && filter) { %>
 <%- include('filter') %>
+<% } else if (typeof success !== "undefined" && success) { %>
+<%- include('success') %>
 <% } else { %>
 <% } %>
 <div class="border-right">
