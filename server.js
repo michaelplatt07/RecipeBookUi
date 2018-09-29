@@ -48,8 +48,16 @@ app.get('/recipes', async (req, res) => {
 	json: true
     }
 
-    let response = await rp(options);
-    res.render('recipes', { recipes: response['recipes'] })
+    try
+    {    let response = await rp(options);
+	 res.render('recipes', { recipes: response['recipes'] })
+    }
+    catch (err)
+    {
+	if (err.statusCode == 404) {
+	    res.render('error', { message: err.error.msg })
+	}	
+    }
 });
 
 
