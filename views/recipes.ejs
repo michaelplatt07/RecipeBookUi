@@ -6,14 +6,16 @@
   </head>
   <body>
     <%- include('components/header') %>
-    <% for(var i = 0; i < recipes.length; ++i) { %>
-       <a href="/recipes/id/<%- recipes[i]._id %>">
-	 <div class="recipe-box">
-	   <p class="recipe-title"><%- recipes[i].text_friendly_name %></p>
-	   <p class="recipe-description"><%- recipes[i].description %></p>
-	   <p class="recipe-short-description"><%- recipes[i].short_description %></p>
-	 </div>
-       </a>
-       <% } %>
+    <div id="recipes-list">
+      <% for(var i = 0; i < recipes.length; ++i) { %>
+	 <a href="/recipes/id/<%- recipes[i]._id %>">
+	   <div class="recipe-box">
+	     <p class="recipe-title"><%- recipes[i].text_friendly_name %></p>
+	     <p class="recipe-description"><%- recipes[i].description %></p>
+	     <p class="recipe-short-description"><%- recipes[i].short_description %></p>
+	   </div>
+	 </a>
+	 <% } %>
+    </div>
   </body>
 </html>

@@ -1,4 +1,14 @@
 @media (max-device-width: 479px) {
+    select
+    {
+	font-size: 3em;
+    }
+
+    label
+    {
+	font-size: 3em;
+    }
+    
     .filter-div
     {
 	text-align: left;
@@ -8,27 +18,24 @@
     .cuisine-filter
     {
 	width: 100%;
-	font-size: 1em;
 	margin-bottom: 5px;
     }
 
     .course-filter
     {
 	width: 100%;
-	font-size: 1em;
 	margin-bottom: 5px;
     }
 
     .ingredient-filter
     {
 	width: 100%;
-	font-size: 1em;
 	margin-bottom: 5px;
     }
 
     .filter-button
     {
-	font-size: 0.5em;
+	font-size: 3em;
     }
 }
 

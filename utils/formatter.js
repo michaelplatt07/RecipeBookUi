@@ -11,7 +11,7 @@ exports.formatIngredients = (ingredientList, quantityList, unitList) => {
 	ingredientList.forEach((ingredient, index) => {
 	    let ingredientJSON = {}
 	    ingredientJSON.quantity = quantityList[index]
-	    ingredientJSON.measurement = unitList[index] === 'undefined' ? '' : unitList[index]
+	    ingredientJSON.measurement = typeof unitList[index] === 'undefined' ? '' : unitList[index]
 	    ingredientJSON.text_friendly_name = ingredientList[index]
 	    ingredients.push(ingredientJSON)
 	})
@@ -25,4 +25,19 @@ exports.formatIngredients = (ingredientList, quantityList, unitList) => {
     }
     
     return ingredients    
+}
+
+exports.formatStepsAndCourses = (input) => {
+    if (!Array.isArray(input) && input !== "")
+    {
+	return [input]
+    }
+    else if (Array.isArray(input))
+    {
+	return input;
+    }
+    else
+    {
+	return ""
+    }
 }

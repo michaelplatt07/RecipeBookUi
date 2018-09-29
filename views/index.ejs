@@ -5,5 +5,22 @@
   </head>
   <body>
     <%- include('components/header') %>
+    <a href="/recipes">
+      <div class="selection-box selection-box-left">
+	<p>ALL RECIPES</p>
+      </div>
+    </a>
+    <div class="selection-right">
+      <a href="/recipes/add">
+	<div class="selection-box selection-box-right-upper">
+	 <p>ADD YOUR OWN</p>
+	</div>
+      </a>
+      <a href="/recipes/search">
+	<div class="selection-box selection-box-right-lower">
+	  <p>SEARCH FOR OTHERS</p>
+	</div>
+      </a>
+    </div>
   </body>
 </html>

@@ -2,8 +2,9 @@
     .header-container
     {
 	width: 100%;
-	height: 40px;
-	background-color: #AA6666;
+	height: 100px;
+	background-color: #c5c5c5;
+	border-bottom: 5px solid #000000
     }
 
     .home-container
@@ -79,8 +80,9 @@
     .header-container
     {
 	width: 100%;
-	height: 150px;
-	background-color: #AA6666;
+	height: 100px;
+	background-color: #c5c5c5;
+	border-bottom: 5px solid #000000
     }
 
     .home-container
@@ -88,20 +90,16 @@
 	display: inline;
 	float: left;
 	height: 100%;
-	margin-left: 20px;
     }
 
     .home-container p
     {
-	font-size: 2em;
-	height: 100%;
-	margin: 0px;
-	padding-top: 50px;
+	display: none;
     }
-
+    
     .home-icon
     {
-	display: none;
+	height: 100%;
     }
 
     .search-container
@@ -109,20 +107,16 @@
 	display: inline;
 	float: right;
 	height: 100%;
-	margin-right: 20px;
     }
 
     .search-container p
     {
-	font-size: 2em;
-	height: 100%;
-	margin: 0px;
-	padding-top: 50px;
+	display: none;
     }
-
+    
     .search-icon
     {
-	display: none;
+	height: 100%;
     }
 
     .filter-container
@@ -130,19 +124,32 @@
 	display: inline;
 	float: right;
 	height: 100%;
-	margin-right: 20px;
     }
 
     .filter-container p
     {
-	font-size: 2em;
-	height: 100%;
-	margin: 0px;
-	padding-top: 50px;
+	display: none;
     }
-
+    
     .filter-icon
     {
+	height: 100%;
+    }
+
+    .add-container
+    {
+	display: inline;
+	float: right;
+	height: 100%;
+    }
+
+    .add-container p
+    {
 	display: none;
+    }
+    
+    .add-icon
+    {
+	height: 100%;
     }
 }

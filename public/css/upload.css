@@ -1,4 +1,19 @@
 @media (max-device-width: 479px) {
+    label
+    {
+	font-size: 3em;
+    }
+
+    input
+    {
+	font-size: 3em;
+    }
+
+    select
+    {
+	font-size: 3em;
+    }
+    
     .upload-div
     {
 	text-align: left;
@@ -14,6 +29,7 @@
     .add-new-item-button
     {
 	margin-bottom: 5px;
+	font-size: 3em;
     }
     
     .quantity-input
@@ -45,7 +61,6 @@
     .course-select
     {
 	width: 100%;
-	font-size: 1em;
 	margin-bottom: 5px;
     }
 
@@ -64,8 +79,7 @@
     .cuisine-select
     {
 	width: 100%;
-	font-size: 1em;
-    	margin-bottom: 5px;
+	margin-bottom: 5px;
     }
 
     .description-input
@@ -77,7 +91,7 @@
 
     .upload-button
     {
-	font-size: 0.5em;
+	font-size: 2.5em;
     }        
 }
 

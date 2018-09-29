@@ -12,7 +12,7 @@
       <br>
       <input type="text" name="quantity" class="quantity-input"/><select class="measurement-input">
 	<% measurements.forEach(function(measurement){ %>
-	<option value="<%= measurement %>"><%= measurement %></option>
+	<option name="unit" value="<%= measurement %>"><%= measurement %></option>
 	<% }); %>
       </select><input type="text" name="ingredient" class="ingredient-input" />      
       <br>
@@ -29,9 +29,9 @@
     </select>
     <br>
     <label for="prepTime">Prep Time: </label><br>
-    <input type="text" name="prepTime" class="prep-input" /> Minutes<br>
+    <input type="text" name="prepTime" class="prep-input" /><label for="prepTime"> Minutes</label><br>
     <label for="cookTime">Cook Time: </label><br>
-    <input type="text" name="cookTime" class="cook-input" /> Minutes<br>
+    <input type="text" name="cookTime" class="cook-input" /><label for="cookTime"> Minutes</label><br>
     <label for="cuisine">Cuisine: </label><br>
     <select name="cuisine" class="cuisine-select" multiple>
       <% cuisines.forEach(function(cuisine){ %>
@@ -42,8 +42,10 @@
     <label for="description">Description: </label><br>
     <textarea name="description" class="description-input" form="uploadForm"></textarea><br>
     <label for="searchable">Status: </label>
-    <input type="radio" name="searchable" value="true"> Public
-    <input type="radio" name="searchable" value="false"> Private
+    <select name="searchable">
+      <option value="false">Private</option>
+      <option value="true">Public</option>
+    </select>
     <br>
     <br>
     <button type="submit" class="upload-button">UPLOAD</button>
