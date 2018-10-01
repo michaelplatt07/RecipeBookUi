@@ -27,7 +27,7 @@ exports.formatIngredients = (ingredientList, quantityList, unitList) => {
     return ingredients    
 }
 
-exports.formatStepsAndCourses = (input) => {
+exports.formatArrayInputs = (input) => {
     if (!Array.isArray(input) && input !== "")
     {
 	return [input]

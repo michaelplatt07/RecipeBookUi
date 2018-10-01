@@ -14,7 +14,19 @@ function addNewStep() {
     newStepElement.type = "text"
     newStepElement.name = "steps"
     newStepElement.className = "step-input"
-    document.getElementById("stepDiv").append(newStepElement)
+
+    var deleteStepButton = document.createElement("button")
+    deleteStepButton.type = "button"
+    deleteStepButton.onclick = () => removeStep(deleteStepButton)
+    deleteStepButton.className = "remove-item-button"
+    deleteStepButton.innerHTML = "DELETE"
+
+    var stepDiv = document.createElement("div")
+
+    stepDiv.append(newStepElement)
+    stepDiv.append(deleteStepButton)
+    
+    document.getElementById("stepDiv").append(stepDiv)
 }
 
 function addNewIngredient() {
@@ -32,8 +44,16 @@ function addNewIngredient() {
     newIngredientElement.name = "ingredient"
     newIngredientElement.className = "ingredient-input"
 
-    document.getElementById("ingredientDiv").append(newQuantityElement)
-    document.getElementById("ingredientDiv").append(newUnitElement)
+    var deleteIngredientButton = document.createElement("button")
+    deleteIngredientButton.type = "button"
+    deleteIngredientButton.onclick = () => removeIngredient(deleteIngredientButton)
+    deleteIngredientButton.className = "remove-item-button"
+    deleteIngredientButton.innerHTML = "DELETE"
+    
+    var ingredientDiv = document.createElement("div")
+    
+    ingredientDiv.append(newQuantityElement)
+    ingredientDiv.append(newUnitElement)
     for (let i = 0; i < measurements.length; ++i)
     {
 	var option = document.createElement("option");
@@ -41,6 +61,18 @@ function addNewIngredient() {
 	option.text = measurements[i];
 	newUnitElement.appendChild(option);
     }
-    document.getElementById("ingredientDiv").append(newIngredientElement)
+    ingredientDiv.append(newIngredientElement)
+    ingredientDiv.append(deleteIngredientButton)
+
+    document.getElementById("ingredientDiv").append(ingredientDiv)
 }
 
+function removeStep(elem) {
+    var divToRemove = elem.parentElement
+    document.getElementById("stepDiv").removeChild(divToRemove);
+}
+
+function removeIngredient(elem) {
+    var divToRemove = elem.parentElement
+    document.getElementById("ingredientDiv").removeChild(divToRemove);
+}

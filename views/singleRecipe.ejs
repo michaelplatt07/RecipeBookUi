@@ -9,6 +9,12 @@
     <div class="single-recipe-box">
       <p class="recipe-title"><%- recipe.text_friendly_name %></p>
       <p><%- recipe.description %></p>
+      <div class="cuisines-list">
+	<p>This recipe belongs to the following cuisine(s):</p>
+	<% for(var i = 0; i < recipe.cuisine.length; ++i) { %>
+	   <%- recipe.cuisine[i] %>, 
+	   <% } %>
+      </div>
       <div class="ingredient-list">
 	<p>Ingredients</p>
       <ul>

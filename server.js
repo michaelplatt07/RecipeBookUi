@@ -131,11 +131,11 @@ app.post('/recipes/add', (req, res) => {
     const recipe = {}
     recipe.text_friendly_name = req.body.name
     recipe.ingredients = formatter.formatIngredients(req.body.ingredient, req.body.quantity, req.body.unit)
-    recipe.steps = formatter.formatStepsAndCourses(req.body.steps)
-    recipe.course = formatter.formatStepsAndCourses(req.body.course)
+    recipe.steps = formatter.formatArrayInputs(req.body.steps)
+    recipe.course = formatter.formatArrayInputs(req.body.course)
     recipe.prep_time = formatter.formatTime(req.body.prepTime)
     recipe.cook_time = formatter.formatTime(req.body.cookTime)
-    recipe.cuisine = req.body.cuisine
+    recipe.cuisine = formatter.formatArrayInputs(req.body.cuisine)
     recipe.searchable = (req.body.searchable === "true")
     recipe.description = req.body.description
     

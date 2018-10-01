@@ -3,7 +3,8 @@ const courses = [
     "Brunch",
     "Lunch",
     "Dinner",
-    "Snack"
+    "Snack",
+    "Dessert"
 ]
 
 module.exports = courses

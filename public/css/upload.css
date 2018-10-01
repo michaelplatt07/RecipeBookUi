@@ -31,7 +31,13 @@
 	margin-bottom: 5px;
 	font-size: 3em;
     }
-    
+
+    .remove-item-button
+    {
+	margin-bottom: 5px;
+	font-size: 3em;
+    }
+
     .quantity-input
     {
 	width: 10%;
@@ -48,13 +54,13 @@
 
     .ingredient-input
     {
-	width: 70%;
+	width: 50%;
 	margin-bottom: 5px;
     }
 
     .step-input
     {
-	width: 100%;
+	width: 80%;
 	margin-bottom: 5px;
     }
 
@@ -115,7 +121,12 @@
     {
 	margin-bottom: 5px;
     }
-    
+
+    .remove-item-button
+    {
+	margin-bottom: 5px;
+    }
+
     .quantity-input
     {
 	width: 10%;
@@ -132,13 +143,13 @@
 
     .ingredient-input
     {
-	width: 70%;
+	width: 50%;
 	margin-bottom: 5px;
     }
 
     .step-input
     {
-	width: 100%;
+	width: 80%;
 	margin-bottom: 5px;
     }
 

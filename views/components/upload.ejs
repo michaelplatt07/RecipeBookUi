@@ -10,16 +10,21 @@
       <label for="ingredients">Ingredients: </label>
       <button type="button" class="add-new-item-button" onclick="addNewIngredient()">+</button>
       <br>
-      <input type="text" name="quantity" class="quantity-input"/><select class="measurement-input">
-	<% measurements.forEach(function(measurement){ %>
-	<option name="unit" value="<%= measurement %>"><%= measurement %></option>
-	<% }); %>
-      </select><input type="text" name="ingredient" class="ingredient-input" />      
-      <br>
+      <div>
+	<input type="text" name="quantity" class="quantity-input"/><select class="measurement-input">
+	  <% measurements.forEach(function(measurement){ %>
+	  <option name="unit" value="<%= measurement %>"><%= measurement %></option>
+	  <% }); %>
+	</select><input type="text" name="ingredient" class="ingredient-input" />
+	<button type="button" class="remove-item-button" onclick="removeIngredient(this)">DELETE</button>
+      </div>
     </div>
     <div id="stepDiv">
       <label for="steps">Steps: </label><button type="button" class="add-new-item-button" onclick="addNewStep()">+</button><br>
-      <input type="text" name="steps" class="step-input" />
+      <div>
+	<input type="text" name="steps" class="step-input" />
+	<button type="button" class="remove-item-button" onclick="removeStep(this)">DELETE</button>
+      </div>
     </div>
     <label for="course">Course: </label><br>
     <select name="course" class="course-select" multiple>
