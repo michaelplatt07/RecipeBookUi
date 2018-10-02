@@ -95,28 +95,30 @@ app.get('/recipes/search', (req, res) => {
 
 
 // Post request to get back recipes.
-app.post('/recipes/search', (req, res) => {
-    const searchParams = req.body.searchParams.split(" ").join("+")
-    var queryString = util.format('?ingredients=%s' +
-				  '&course=%s' +
-				  '&submitted_by=%s' +
-				  '&cuisine=%s', searchParams, searchParams, searchParams, searchParams);
-    
+app.post('/recipes/search', async (req, res) => {
     var options = {
 	method: 'GET',
-	uri: 'http://localhost:3000/recipes/search' + queryString,
+	uri: 'http://localhost:3000/recipes/search',
+	body: {
+	    ingredients: req.body.searchParams.split(" "),
+	    course: req.body.searchParams.split(" "),
+	    submitted_by: req.body.searchParams.split(" "),
+	    cuisine: req.body.searchParams.split(" ")
+	},
 	json: true
     }
 
     // Run get and wait on promise before rendering.
-    rp(options, (req, res) => {
-    }).then((response) => {
+    try
+    {
+	let response = await rp(options)
 	res.render('recipes', { recipes: response['recipes'] })
-    }).catch((err) => {
+    }
+    catch (err) {
 	if (err.statusCode == 404) {
 	    res.render('error', { message: err.error.msg })
 	}
-    });
+    }
 });
 
 
@@ -127,7 +129,7 @@ app.get('/recipes/add', (req, res) => {
 
 
 // Post for adding a new recipe.
-app.post('/recipes/add', (req, res) => {
+app.post('/recipes/add', async (req, res) => {
     const recipe = {}
     recipe.text_friendly_name = req.body.name
     recipe.ingredients = formatter.formatIngredients(req.body.ingredient, req.body.quantity, req.body.unit)
@@ -147,10 +149,12 @@ app.post('/recipes/add', (req, res) => {
     }
 
     // Run get and wait on promise before rendering.
-    rp(options, (req, res) => {
-    }).then((response) => {
+    try
+    {
+	let response = rp(options)
 	res.redirect('/success')
-    }).catch((err) => {
+    }
+    catch (err) {
 	if (err.statusCode === 422)
 	{
 	    console.log(err.error.msg)
@@ -159,7 +163,7 @@ app.post('/recipes/add', (req, res) => {
 	else
 	{
 	}
-    });
+    }
 })
 
 
@@ -190,33 +194,14 @@ app.get('/recipes/filter', async (req, res) => {
 
 // Post for filtering recipes
 app.post('/recipes/filter', async (req, res) => {
-    var queryString = '?'
-    
-    if (req.body.ingredients)
-    {
-	if (Array.isArray(req.body.ingredients))
-	    queryString += `ingredients=${req.body.ingredients.join('+')}`
-	else
-	    queryString += `ingredients=${req.body.ingredients}`
-    }
-    if (req.body.cuisine)
-    {
-	if (Array.isArray(req.body.cuisine))
-	    queryString += (queryString.length > 1) ? `&cuisine=${req.body.cuisine.join('+')}` : `cuisine=${req.body.cuisine.join('+')}`
-	else
-	    queryString += (queryString.length > 1) ? `&cuisine=${req.body.cuisine}` : `cuisine=${req.body.cuisine}`
-    }
-    if (req.body.course)
-    {
-	if (Array.isArray(req.body.course))
-	    queryString += (queryString.length > 1) ? `&course=${req.body.course.join('+')}` : `course=${req.body.course.join('+')}`
-	else
-	    queryString += (queryString.length > 1) ? `&course=${req.body.course}` : `cuisine=${req.body.course}`
-    }
-    
     var options = {
 	method: 'GET',
-	uri: 'http://localhost:3000/recipes/search' + queryString,
+	uri: 'http://localhost:3000/recipes/search',
+	body: {
+	    ingredients: req.body.ingredients,
+	    cuisine: req.body.cuisine,
+	    course: req.body.course,
+	},
 	json: true
     }
 
@@ -236,7 +221,7 @@ app.post('/recipes/filter', async (req, res) => {
 })
 
 // Recipe by name.
-app.get('/recipes/:recipeName', (req, res) => {
+app.get('/recipes/:recipeName', async (req, res) => {
     var options = {
 	method: 'GET',
 	uri: 'http://localhost:3000/recipes/' + req.params.recipeName,
@@ -244,10 +229,15 @@ app.get('/recipes/:recipeName', (req, res) => {
     }
 
     // Run get and wait on promise before rendering.
-    rp(options, (req, res) => {
-    }).then((response) => {
+    try
+    {
+	let response = rp(options)
 	res.render('singleRecipe', { pageTitle: response['title'], recipe: response['recipe'] })
-    });
+    }
+    catch (err)
+    {
+	
+    }
 });
 
 
