@@ -157,4 +157,22 @@
     {
 	display: none;
     }
+
+    .login-container
+    {
+	display: inline;
+	float: right;
+	height: 100%;
+    }
+
+    .login-container p
+    {
+	display: block;
+	margin: 0px;
+    }
+    
+    .login-icon
+    {
+	display: none;
+    }
 }

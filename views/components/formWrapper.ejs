@@ -9,6 +9,8 @@
 <%- include('filter') %>
 <% } else if (typeof success !== "undefined" && success) { %>
 <%- include('success') %>
+<% } else if (typeof login !== "undefined" && login) { %>
+<%- include('login') %>
 <% } else { %>
 <% } %>
 <div class="border-right">

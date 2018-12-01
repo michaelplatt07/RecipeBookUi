@@ -3,12 +3,16 @@ const express = require('express');
 const app = express();
 const request = require('request');
 const rp = require('request-promise');
+const session = require('express-session');
+const passport = require('passport')
 const bodyParser = require('body-parser');
 const util = require('util')
 const formatter = require('./utils/formatter')
 const cuisines = require('./consts/cuisines.js')
 const courses = require('./consts/courses.js')
 const measurements = require('./consts/measurements.js')
+const cookieParser = require('cookie-parser');
+const crypto = require('crypto')
 
 // View configuration information.
 app.use(express.static(__dirname + '/public'));
@@ -17,6 +21,13 @@ app.set('view engine', 'ejs');
 // Enable body parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(session({
+    secret: 'super-secret-key-that-cannot-be-guessed',
+    resave: true,
+    saveUninitialized: true,
+}));
+app.use(passport.initialize());
+app.use(cookieParser())
 
 
 // Home page.
@@ -45,6 +56,7 @@ app.get('/recipes', async (req, res) => {
     var options = {
 	method: 'GET',
 	uri: 'http://localhost:3000/recipes',
+	headers: { 'Authorization': req.cookies['Authorization'] },
 	json: true
     }
 
@@ -55,6 +67,9 @@ app.get('/recipes', async (req, res) => {
     }
     catch (err)
     {
+	if (err.statusCode === 401) {
+	    res.render('error', { message: err.message })	    
+	}
 	if (err.statusCode == 404) {
 	    res.render('error', { message: err.error.msg })
 	}	
@@ -144,6 +159,7 @@ app.post('/recipes/add', async (req, res) => {
     var options = {
 	method: 'POST',
 	uri: 'http://localhost:3000/recipes/add',
+	headers: { 'Authorization': req.cookies['Authorization'] },
 	body: recipe,
 	json: true
     }
@@ -157,7 +173,6 @@ app.post('/recipes/add', async (req, res) => {
     catch (err) {
 	if (err.statusCode === 422)
 	{
-	    console.log(err.error.msg)
 	    res.render('error', { message: err.error.msg })
 	}
 	else
@@ -184,7 +199,6 @@ app.get('/recipes/filter', async (req, res) => {
     {
 	if (err.statusCode === 404)
 	{
-	    console.log(err.error.msg)
 	    res.render('error', { message: err.error.msg })
 	}
     }
@@ -237,6 +251,40 @@ app.get('/recipes/:recipeName', async (req, res) => {
     catch (err)
     {
 	
+    }
+});
+
+
+app.get('/login', (req, res) =>{
+    res.render('login')
+})
+
+
+// Login.
+app.post('/login', async (req, res) => {
+    const cipher = crypto.createCipher('aes-128-cbc', 'baseSecret');
+    var encryptedPass = cipher.update(req.body.password, 'utf8', 'hex');
+    encryptedPass += cipher.final('hex');
+    
+    var options = {
+	method: 'POST',
+	uri: 'http://localhost:3000/users/login',
+	body: { username: req.body.username, password: encryptedPass },	
+	json: true,
+    }
+    
+    // Run get and wait on promise before rendering.
+    try
+    {
+	let response = await rp(options)
+	res.cookie('Authorization', 'JWT ' + response['token'])
+	res.render('loginSuccess', { message: response['message'] })
+    }
+    catch (err)
+    {
+	if (err.statusCode === 401) {
+	    res.render('error', { message: err.error.message })
+	}
     }
 });
 

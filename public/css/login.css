@@ -1,0 +1,38 @@
+@media (max-device-width: 479px) {
+    input
+    {
+	font-size: 3em;
+	margin-bottom: 3px;
+    }
+
+    .login-div
+    {
+	text-align: center;
+    }
+    
+    .login-button
+    {
+	font-size: 3em;
+    }
+}
+
+@media (min-device-width: 480px) {
+    input
+    {
+	margin-bottom: 3px;	
+    }
+
+    .login-div
+    {
+	display: inline;
+	float: left;
+	width: calc(34% - 20px);
+	text-align: center;
+	padding: 10px;
+    }
+
+    .login-button
+    {
+	font-size: 1em;
+    }
+}
